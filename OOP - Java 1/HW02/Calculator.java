@@ -25,6 +25,17 @@ public class Calculator {
     // #3 - perform chosen operation
     switch (lowerOperation) {
       case "add", "subtract":
+        System.out.println("Enter two intergers: ");
+        Integer integer1 = input.nextInt();
+        Integer integer2 = input.nextInt();
+
+        Integer result;
+        if (lowerOperation == "add") {
+          result = integer1 + integer2;
+        } else {
+          result = integer1 - integer2;
+        }
+        System.out.print("Answer : " + result);
         break;
       case "multiply", "divide":
         break;
