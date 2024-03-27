@@ -61,7 +61,18 @@ public class Calculator {
           System.out.print("Enter two words: ");
           String word1 = input.next();
           String word2 = input.next();
-  
+          Character char1 = word1.charAt(0);
+          Character char2 = word1.charAt(0);
+          Integer comparison = char1.compareTo(char2);
+          
+          if (comparison == 0) {
+            System.out.println("Answer: Chicken or Egg.");
+          } else if (comparison < 0) {
+            System.out.printf("%s comes before %s alphabetically.", word1, word2);
+          } else {
+            System.out.printf("%s comes before %s alphabetically.", word2, word1);
+          }
+
           break;
         default:
           break;
