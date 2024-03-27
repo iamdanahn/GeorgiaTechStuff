@@ -36,8 +36,21 @@ public class Calculator {
           result = integer1 - integer2;
         }
         System.out.print("Answer : " + result);
+        
         break;
       case "multiply", "divide":
+        System.out.println("Enter two doubles:");
+        Double double1 = input.nextDouble();
+        Double double2 = input.nextDouble();
+
+        Double result;
+        if (lowerOperation == "multiply") {
+          result = double1 * double2;
+        } else {
+          result = double1 / double2;
+        }
+        System.out.print("Answer : " + result);
+
         break;
       case "alphabetize":
         break;
