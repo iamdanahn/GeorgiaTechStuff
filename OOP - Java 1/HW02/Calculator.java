@@ -30,9 +30,9 @@ public class Calculator {
         case "add", "subtract":
           System.out.println("Enter two integers:");
           try {
-            Integer integer1 = input.nextInt();
-            Integer integer2 = input.nextInt();
-            Integer resultInt;
+            int integer1 = input.nextInt();
+            int integer2 = input.nextInt();
+            int resultInt;
     
             if (lowerOperation.equals("add")) {
               resultInt = integer1 + integer2;
@@ -47,11 +47,12 @@ public class Calculator {
   
           break;
         case "multiply", "divide":
-          System.out.println("Enter two doubles: ");
+          System.out.println("Enter two doubles:");
           try {
-            Double double1 = input.nextDouble();
-            Double double2 = input.nextDouble();
-            if (double2 == 0) {
+            double double1 = input.nextDouble();
+            double double2 = input.nextDouble();
+
+            if (double2 == 0 && lowerOperation.equals("divide")) {
               exitLine();
               break;
             }
@@ -62,7 +63,7 @@ public class Calculator {
             } else {
               resultDouble = double1 / double2;
             }
-            System.out.println("Answer: " + resultDouble);
+            System.out.printf("Answer: %.2f\n", resultDouble);
             
           } catch (Exception e) {
             exitLine();
@@ -71,20 +72,20 @@ public class Calculator {
   
           break;
         case "alphabetize":
-          System.out.println("Enter two words: ");
+          System.out.println("Enter two words:");
           try {
             String word1 = input.next();
             String word2 = input.next();
-            Character char1 = word1.charAt(0);
-            Character char2 = word2.charAt(0);
-            Integer comparison = char1.compareTo(char2);
+            String lowerWord1 = word1.toLowerCase();
+            String lowerWord2 = word2.toLowerCase();
+            Integer comparison = lowerWord1.compareTo(lowerWord2);
 
             if (comparison == 0) {
               System.out.println("Answer: Chicken or Egg.");
             } else if (comparison < 0) {
-              System.out.printf("%s comes before %s alphabetically.\n", word1, word2);
+              System.out.printf("Answer: %s comes before %s alphabetically.\n", word1, word2);
             } else {
-              System.out.printf("%s comes before %s alphabetically.\n", word2, word1);
+              System.out.printf("Answer: %s comes before %s alphabetically.\n", word2, word1);
             }
             
           } catch (Exception e) {
