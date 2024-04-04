@@ -24,22 +24,43 @@ public class Battleship {
 		boolean playerOneTurn = true;
 		while (gameOn) {
 			if (playerOneTurn) {
-				fireShot(locationBoardP1, targetBoardP1, 1, 2);
+				fireShot(locationBoardP2, targetBoardP1, 1, 2);
+				if (checkWinner(targetBoardP1)) {
+					System.out.println("PLAYER 1 WINS! YOU SUNK ALL OF YOUR OPPONENT'S SHIPS!");
+					gameOn = false;
+				}
 			} else {
-				fireShot(locationBoardP2, targetBoardP2, 2, 1);
+				fireShot(locationBoardP1, targetBoardP2, 2, 1);
+				if (checkWinner(targetBoardP2)) {
+					System.out.println("PLAYER 2 WINS! YOU SUNK ALL OF YOUR OPPONENT'S SHIPS!");
+					gameOn = false;
+				}
 			}
 
-
+			playerOneTurn = !playerOneTurn;
 		}
 
 	}
 
+	private static boolean checkWinner(char[][] board) {
+		int count = 0;
+		for (int row = 0; row < 5; row++) {
+			for (int column = 0; column < 5; column++) {
+				if (board[row][column] == 'X') {
+				count++;
+				}
+			}
+		}
+
+		return count == 5;
+	}
+
 	private static void fireShot(char[][] locationBoard, char[][] targetBoard, int playerNum, int opponent) {
 		Scanner input = new Scanner(System.in);
-		System.out.println(String.format("Player %s, enter hit row/column:", String.valueOf(playerNum)));
 		
 		boolean insertingCoordinates = true;
 		while (insertingCoordinates) {
+			System.out.println(String.format("Player %s, enter hit row/column:", String.valueOf(playerNum)));
 			String location = input.nextLine();
 
 			String[] parts = location.split(" ");
@@ -50,14 +71,22 @@ public class Battleship {
 				System.out.println("Invalid coordinates. Choose different coordinates.");
 				continue;
 			} else {
-				if (locationBoard[row][col] == 'O') {
+				if (targetBoard[row][col] == 'O' || targetBoard[row][col] == 'X') {
 					System.out.println("You already fired on this spot. Choose different coordinates.");
+					continue;
+
 				} else if (locationBoard[row][col] == '-') {
 					System.out.println("PLAYER " + playerNum + " MISSED!");
+					targetBoard[row][col] = 'O';
+					
 				} else if (locationBoard[row][col] == '@') {
 					System.out.println("PLAYER " + playerNum + " HIT PLAYER " + opponent + "'s SHIP!");
+					targetBoard[row][col] = 'X';
 					
 				}
+
+				insertingCoordinates = false;
+				printBattleShip(targetBoard);
 			}
 			
 		}
@@ -69,10 +98,10 @@ public class Battleship {
 		System.out.println(String.format("PLAYER %s, ENTER YOUR SHIPS' COORDINATES.", String.valueOf(playerNum)));
 
 		for (int i = 1; i <= 5; i++) {
-			System.out.println("Enter ship " + i + " location:");
 			boolean insertingCoordinates = true;
-
+			
 			while (insertingCoordinates) {
+				System.out.println("Enter ship " + i + " location:");
 				String location = input.nextLine();
 				
 				String[] parts = location.split(" ");
