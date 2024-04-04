@@ -5,18 +5,25 @@ public class Battleship {
 		System.out.println("Welcome to Battleship!");
 
 		// 2. Prompt each user to enter coordinates for 5 ships
-		char[][] p1Board = new char[5][5];
-		char[][] p2Board = new char[5][5];
-		buildInitialBoard(p1Board);
-		buildInitialBoard(p2Board);
+		// 3. Create two 5x5 grid Location Boards to store each players ship location
+		char[][] locationBoardP1 = new char[5][5];
+		char[][] locationBoardP2 = new char[5][5];
+		buildInitialBoard(locationBoardP1);
+		buildInitialBoard(locationBoardP2);
 
-		enterCoordinates(p1Board, 1);
-		enterCoordinates(p2Board, 2);
+		// 4. Create two more 5x5 grid Target History Boards to track hits and misses
+		char[][] targetBoardP1 = new char[5][5];
+		char[][] targetBoardP2 = new char[5][5];
+		buildInitialBoard(targetBoardP1);
+		buildInitialBoard(targetBoardP2);
+
+		enterStartingShipCoordinates(locationBoardP1, 1);
+		enterStartingShipCoordinates(locationBoardP2, 2);
 
 
 	}
 
-	private static void enterCoordinates(char[][] playerBoard, int playerNum) {
+	private static void enterStartingShipCoordinates(char[][] playerBoard, int playerNum) {
 		Scanner input = new Scanner(System.in);
 		System.out.println(String.format("PLAYER %s, ENTER YOUR SHIPS' COORDINATES.", String.valueOf(playerNum)));
 
