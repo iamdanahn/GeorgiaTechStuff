@@ -40,6 +40,10 @@ public class Battleship {
 			playerOneTurn = !playerOneTurn;
 		}
 
+		System.out.println("Final boards:");
+		printBattleShip(targetBoardP1);
+		printBattleShip(targetBoardP2);
+
 	}
 
 	private static boolean checkWinner(char[][] board) {
@@ -78,10 +82,12 @@ public class Battleship {
 				} else if (locationBoard[row][col] == '-') {
 					System.out.println("PLAYER " + playerNum + " MISSED!");
 					targetBoard[row][col] = 'O';
+					locationBoard[row][col] = 'O';
 					
 				} else if (locationBoard[row][col] == '@') {
 					System.out.println("PLAYER " + playerNum + " HIT PLAYER " + opponent + "'s SHIP!");
 					targetBoard[row][col] = 'X';
+					locationBoard[row][col] = 'X';
 					
 				}
 
