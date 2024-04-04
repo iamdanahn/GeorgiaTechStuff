@@ -10,6 +10,40 @@ public class Battleship {
 		buildInitialBoard(p1Board);
 		buildInitialBoard(p2Board);
 
+		enterCoordinates(p1Board, 1);
+		enterCoordinates(p2Board, 2);
+
+	}
+
+	private static void enterCoordinates(char[][] playerBoard, int playerNum) {
+		Scanner input = new Scanner(System.in);
+		System.out.println(String.format("PLAYER %s, ENTER YOUR SHIPS' COORDINATES.", String.valueOf(playerNum)));
+
+		for (int i = 1; i <= 5; i++) {
+			System.out.println("Enter ship " + i + " location:");
+			boolean insertingCoordinates = true;
+
+			while (insertingCoordinates) {
+				String location = input.nextLine();
+				
+				String[] parts = location.split(" ");
+				int row = Integer.parseInt(parts[0]);
+				int col = Integer.parseInt(parts[1]);
+				
+				if (isValidCoordinates(row, col) && playerBoard[row][col] == '-') {
+					playerBoard[row][col] = '@';
+					insertingCoordinates = false;
+				} else {
+					System.out.println("Invalid coordinates. Choose different coordinates.");
+				}
+			}
+		}
+
+		printBattleShip(playerBoard);
+	}
+
+	private static boolean isValidCoordinates(int row, int col) {
+		return row >= 0 || row <= 5 || col >= 0 || col <= 5;
 	}
 
 	private static void buildInitialBoard(char[][] playerBoard) {
@@ -18,7 +52,7 @@ public class Battleship {
 				playerBoard[row][column] = '-';
 			}
 		}
-		printBattleShip(playerBoard);
+		// printBattleShip(playerBoard);
 	}
 
 	// Use this method to print game boards to the console.
