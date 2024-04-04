@@ -13,6 +13,7 @@ public class Battleship {
 		enterCoordinates(p1Board, 1);
 		enterCoordinates(p2Board, 2);
 
+
 	}
 
 	private static void enterCoordinates(char[][] playerBoard, int playerNum) {
@@ -36,6 +37,8 @@ public class Battleship {
 				if (isValidCoordinates(row, col) && playerBoard[row][col] == '-') {
 					playerBoard[row][col] = '@';
 					insertingCoordinates = false;
+				} else if (isValidCoordinates(row, col) && playerBoard[row][col] == '@') {
+					System.out.println("You already have a ship there. Choose different coordinates.");
 				} else {
 					System.out.println("Invalid coordinates. Choose different coordinates.");
 				}
