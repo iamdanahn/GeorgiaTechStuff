@@ -10,6 +10,8 @@ public class Battleship {
 		char[][] locationBoardP2 = new char[5][5];
 		buildInitialBoard(locationBoardP1);
 		buildInitialBoard(locationBoardP2);
+		enterStartingShipCoordinates(locationBoardP1, 1);
+		enterStartingShipCoordinates(locationBoardP2, 2);
 
 		// 4. Create two more 5x5 grid Target History Boards to track hits and misses
 		char[][] targetBoardP1 = new char[5][5];
@@ -17,8 +19,6 @@ public class Battleship {
 		buildInitialBoard(targetBoardP1);
 		buildInitialBoard(targetBoardP2);
 
-		enterStartingShipCoordinates(locationBoardP1, 1);
-		enterStartingShipCoordinates(locationBoardP2, 2);
 
 
 	}
@@ -53,6 +53,9 @@ public class Battleship {
 		}
 
 		printBattleShip(playerBoard);
+		for (int i = 0; i < 100; i++) {
+			System.out.println(" ");
+		}
 	}
 
 	private static boolean isValidCoordinates(int row, int col) {
