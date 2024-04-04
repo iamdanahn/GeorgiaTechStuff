@@ -19,7 +19,48 @@ public class Battleship {
 		buildInitialBoard(targetBoardP1);
 		buildInitialBoard(targetBoardP2);
 
+		// 5. Prompt Player 1 to enter a coordinate to fire upon. You can expect the user input will be two ints separated by a space.
+		boolean gameOn = true;
+		boolean playerOneTurn = true;
+		while (gameOn) {
+			if (playerOneTurn) {
+				fireShot(locationBoardP1, targetBoardP1, 1, 2);
+			} else {
+				fireShot(locationBoardP2, targetBoardP2, 2, 1);
+			}
 
+
+		}
+
+	}
+
+	private static void fireShot(char[][] locationBoard, char[][] targetBoard, int playerNum, int opponent) {
+		Scanner input = new Scanner(System.in);
+		System.out.println(String.format("Player %s, enter hit row/column:", String.valueOf(playerNum)));
+		
+		boolean insertingCoordinates = true;
+		while (insertingCoordinates) {
+			String location = input.nextLine();
+
+			String[] parts = location.split(" ");
+			int row = Integer.parseInt(parts[0]);
+			int col = Integer.parseInt(parts[1]);
+
+			if (!isValidCoordinates(row, col)) {
+				System.out.println("Invalid coordinates. Choose different coordinates.");
+				continue;
+			} else {
+				if (locationBoard[row][col] == 'O') {
+					System.out.println("You already fired on this spot. Choose different coordinates.");
+				} else if (locationBoard[row][col] == '-') {
+					System.out.println("PLAYER " + playerNum + " MISSED!");
+				} else if (locationBoard[row][col] == '@') {
+					System.out.println("PLAYER " + playerNum + " HIT PLAYER " + opponent + "'s SHIP!");
+					
+				}
+			}
+			
+		}
 
 	}
 
@@ -37,9 +78,6 @@ public class Battleship {
 				String[] parts = location.split(" ");
 				int row = Integer.parseInt(parts[0]);
 				int col = Integer.parseInt(parts[1]);
-				
-				// System.out.println();
-				// System.out.println(isValidCoordinates(row, col));
 
 				if (isValidCoordinates(row, col) && playerBoard[row][col] == '-') {
 					playerBoard[row][col] = '@';
