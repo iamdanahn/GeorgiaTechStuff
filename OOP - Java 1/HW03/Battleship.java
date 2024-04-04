@@ -3,6 +3,7 @@ public class Battleship {
 	public static void main(String[] args) {
     // 1. Print out starting message
 		System.out.println("Welcome to Battleship!");
+		System.out.println("");
 
 		// 2. Prompt each user to enter coordinates for 5 ships
 		// 3. Create two 5x5 grid Location Boards to store each players ship location
@@ -13,6 +14,9 @@ public class Battleship {
 		enterStartingShipCoordinates(locationBoardP1, 1);
 		enterStartingShipCoordinates(locationBoardP2, 2);
 
+		// printBattleShip(locationBoardP1);
+		// printBattleShip(locationBoardP2);
+
 		// 4. Create two more 5x5 grid Target History Boards to track hits and misses
 		char[][] targetBoardP1 = new char[5][5];
 		char[][] targetBoardP2 = new char[5][5];
@@ -22,7 +26,7 @@ public class Battleship {
 		// 5. Prompt Player 1 to enter a coordinate to fire upon. You can expect the user input will be two ints separated by a space.
 		boolean gameOn = true;
 		boolean playerOneTurn = true;
-		while (gameOn) {
+		do {
 			if (playerOneTurn) {
 				fireShot(locationBoardP2, targetBoardP1, 1, 2);
 				if (checkWinner(targetBoardP1)) {
@@ -37,12 +41,15 @@ public class Battleship {
 				}
 			}
 
+			System.out.println("");
 			playerOneTurn = !playerOneTurn;
-		}
+		} while (gameOn); 
 
 		System.out.println("Final boards:");
-		printBattleShip(targetBoardP1);
-		printBattleShip(targetBoardP2);
+		System.out.println("");
+		printBattleShip(locationBoardP1);
+		System.out.println("");
+		printBattleShip(locationBoardP2);
 
 	}
 
@@ -93,6 +100,7 @@ public class Battleship {
 
 				insertingCoordinates = false;
 				printBattleShip(targetBoard);
+				// System.out.println("");
 			}
 			
 		}
@@ -126,9 +134,10 @@ public class Battleship {
 		}
 
 		printBattleShip(playerBoard);
-		for (int i = 0; i < 100; i++) {
-			System.out.println(" ");
-		}
+		System.out.println("{ 100 empty lines }");
+		// for (int i = 0; i < 100; i++) {
+		// 	System.out.println(" ");
+		// }
 	}
 
 	private static boolean isValidCoordinates(int row, int col) {
