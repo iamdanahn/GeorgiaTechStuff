@@ -30,6 +30,9 @@ public class Battleship {
 				int row = Integer.parseInt(parts[0]);
 				int col = Integer.parseInt(parts[1]);
 				
+				// System.out.println();
+				// System.out.println(isValidCoordinates(row, col));
+
 				if (isValidCoordinates(row, col) && playerBoard[row][col] == '-') {
 					playerBoard[row][col] = '@';
 					insertingCoordinates = false;
@@ -43,7 +46,7 @@ public class Battleship {
 	}
 
 	private static boolean isValidCoordinates(int row, int col) {
-		return row >= 0 || row <= 5 || col >= 0 || col <= 5;
+		return (row >= 0 && row < 5) && (col >= 0 && col < 5);
 	}
 
 	private static void buildInitialBoard(char[][] playerBoard) {
