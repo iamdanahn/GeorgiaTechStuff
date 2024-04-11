@@ -16,16 +16,16 @@ public class Fly {
   }
 
   // setters & getters
-  public double getMass() {
+  protected double getMass() {
     return this.mass;
   }
-  private double setMass(double mass) {
+  protected double setMass(double mass) {
     return this.mass = mass;
   }
-  public double getSpeed() {
+  protected double getSpeed() {
     return this.speed;
   }
-  private double setSpeed(double speed) {
+  protected double setSpeed(double speed) {
     return this.speed = speed;
   }
 
@@ -53,7 +53,7 @@ public class Fly {
     }
   }
 
-  private boolean isDead() {
+  public boolean isDead() {
     return getMass() == 0;
   }
 }

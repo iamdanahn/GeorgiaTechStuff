@@ -20,29 +20,29 @@ public class Frog {
     this.tongueSpeed = tongueSpeed;
   }
 
-  public String getName() {
+  protected String getName() {
     return this.name;
   }
-  private String setName(String newName) {
+  protected String setName(String newName) {
     return this.name = newName;
   }
-  public int getAge() {
+  protected int getAge() {
     return this.age;
   }
-  private int setAge(int newAge) {
+  protected int setAge(int newAge) {
     return this.age = getAge() + newAge; // months
   }
-  public double getTongueSpeed() {
+  protected double getTongueSpeed() {
     return this.tongueSpeed;
   }
-  private double setTongueSpeed(double newTongueSpeed) {
+  protected double setTongueSpeed(double newTongueSpeed) {
     return this.tongueSpeed = getTongueSpeed() + newTongueSpeed;
   }
-  public boolean getIsFroglet() {
+  protected boolean getIsFroglet() {
     int age = getAge()
     return age > 1 && age < 7;
   }
-  private boolean setIsFroglet(boolean newIsFroglet) {
+  protected boolean setIsFroglet(boolean newIsFroglet) {
     return this.isFroglet = newIsFroglet;
   }
   
@@ -67,5 +67,23 @@ public class Frog {
 
   public void grow() {
     grow(1);
+  }
+
+  public eat(Fly fly) {
+    if (fly.isDead()) {
+      return;
+    }
+
+    if (getTongueSpeed() > fly.getSpeed()) {
+      // is caught
+      if (fly.getMass() >= (0.5 * getAge()) ) {
+        grow(1);
+        fly.setMass(0);
+      }
+    } else {
+      // not caught
+      fly.grow(1);
+
+    }
   }
 }
