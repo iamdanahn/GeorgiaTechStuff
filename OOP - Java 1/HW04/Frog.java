@@ -47,10 +47,6 @@ public class Frog {
   protected boolean setIsFroglet(boolean newIsFroglet) {
     return this.isFroglet = newIsFroglet;
   }
-  
-  public static void main(String[] args) {
-  }
-
 
   public void grow(int months) {
     setAge(months);
