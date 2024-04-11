@@ -13,7 +13,8 @@ public class Frog {
   }
 
   public Frog(String name, double ageInYears, double tongueSpeed) {
-    this(name, int(ageInYears), tongueSpeed);
+    
+    this(name, int(ageInYears * 12), tongueSpeed);
   }
 
   public Frog(String name, int age, double tongueSpeed) {
