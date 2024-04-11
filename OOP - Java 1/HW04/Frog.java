@@ -25,9 +25,9 @@ public class Frog {
   protected String getName() {
     return this.name;
   }
-  protected String setName(String newName) {
-    return this.name = newName;
-  }
+  // protected String setName(String newName) {
+  //   return this.name = newName;
+  // }
   protected int getAge() {
     return this.age;
   }
