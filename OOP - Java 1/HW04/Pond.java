@@ -25,6 +25,21 @@ public class Pond {
     // Have the Frog named Peepo grow by 8 months.
     peepo.grow(8);
 
+    // Have the Frog named Peepo attempt to eat the Fly with a mass of 6.
+    peepo.eat(fly2);
+
+    // Print out on a new line the description of the Fly with a mass of 6 given by the toString method.
+    System.out.println(fly2.toString());
+    
+    // Print out on a new line the description of the Frog named Peepo given by the toString method.
+    System.out.println(peepo.toString());
+    
+
+
+    // Print out on a new line the description of your own Frog given by the toString method.
+    // Have the Frog named Peepaw grow by 4 months.
+    // Print out on a new line the description of the Frog named Peepaw given by the toString method.
+    // Print out on a new line the description of the Frog named Pepe given by the toString method.
 
   }
 
