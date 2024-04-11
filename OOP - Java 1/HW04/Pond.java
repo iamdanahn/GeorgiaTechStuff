@@ -10,15 +10,22 @@ public class Pond {
     Fly fly2 = new Fly(6);
     Fly fly3 = new Fly();
 
+    // Set the species of any Frog to “1331 Frogs”
     peepo.setSpecies('1331 Frogs');
 
+    // Print out on a new line the description of the Frog named Peepo given by the toString method.
     System.out.println(peepo.toString());
     
+    // Have the Frog named Peepo attempt to eat the Fly with a mass of 6.
     peepo.eat(fly2);
     
+    // Print out on a new line the description of the Fly with a mass of 6 given by the toString method.
     System.out.println(fly2.toString());
 
+    // Have the Frog named Peepo grow by 8 months.
     peepo.grow(8);
+
+
   }
 
 }
