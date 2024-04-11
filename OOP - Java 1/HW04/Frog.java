@@ -50,7 +50,7 @@ public class Frog {
   }
 
 
-  private void grow(int months) {
+  public void grow(int months) {
     setAge(months);
 
     for (int i = 0; i < months; i++) {
@@ -63,5 +63,9 @@ public class Frog {
     }
 
     setIsFroglet(getIsFroglet());
+  }
+
+  public void grow() {
+    grow(1);
   }
 }
