@@ -5,21 +5,19 @@ public class Frog {
   private boolean isFroglet; // froglets are > 1 month & < 7 months
   private String species = "Rare Pepe";
 
-  public Frog(String name) {
-    this(name, 0.4166, 5.0);
-  }
-
-  public Frog(String name, double ageInYears, double tongueSpeed) {
-    
-    this(name, int(ageInYears * 12), tongueSpeed);
-  }
-
   public Frog(String name, int age, double tongueSpeed) {
     this.name = name;
     this.age = age;
     this.tongueSpeed = tongueSpeed;
   }
-  
+  public Frog(String name, double ageInYears, double tongueSpeed) {
+    this(name, (int)(ageInYears * 12), tongueSpeed);
+  }
+  public Frog(String name) {
+    this(name, 0.4166, 5.0);
+  }
+
+
   protected String getName() {
     return this.name;
   }
