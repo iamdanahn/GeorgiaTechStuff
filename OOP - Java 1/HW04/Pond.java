@@ -16,6 +16,9 @@ public class Pond {
     
     peepo.eat(fly2);
     
+    System.out.println(fly2.toString());
+
+    peepo.grow(8);
   }
 
 }
