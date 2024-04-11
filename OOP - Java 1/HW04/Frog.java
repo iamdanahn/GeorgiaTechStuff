@@ -5,8 +5,7 @@ public class Frog {
   private int age; // months
   private double tongueSpeed;
   private boolean isFroglet; // froglets are > 1 month & < 7 months
-  
-  private static final String species = "Rare Pepe";
+  private String species = "Rare Pepe";
 
   public Frog(String name) {
     this(name, 0.4166, 5.0);
@@ -47,6 +46,12 @@ public class Frog {
   }
   protected boolean setIsFroglet(boolean newIsFroglet) {
     return this.isFroglet = newIsFroglet;
+  }
+  protected String getSpecies() {
+    return this.species;
+  }
+  protected String setSpecies(String newSpecies) {
+    return this.species = newSpecies
   }
 
   public void grow(int months) {
