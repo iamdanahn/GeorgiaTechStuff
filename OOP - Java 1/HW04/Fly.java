@@ -1,5 +1,3 @@
-import java.text.DecimalFormat;
-
 public class Fly {
   private double mass;
   private double speed;
@@ -31,13 +29,12 @@ public class Fly {
 
   // methods
   public String toString() {
-    DecimalFormat df = new DecimalFormat("#.00"); 
-    String speed = df.format(getSpeed());
+    String speed = String.format("%.2f", getSpeed());
     
     if (getMass() == 0) {
       return "I’m dead, but I used to be a fly with a speed of " + speed;
     } else {
-      String mass = df.format(getMass());
+      String mass = String.format("%.2f", getMass());
       return "I'm a speedy fly with " + speed + " speed and " + mass + " mass";
     }
   }

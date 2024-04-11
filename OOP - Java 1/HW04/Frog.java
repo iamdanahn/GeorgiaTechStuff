@@ -91,8 +91,7 @@ public class Frog {
   }
 
   public String toString() {
-    DecimalFormat df = new DecimalFormat("#.00"); 
-    String speed = df.format(getTongueSpeed());
+    String speed = String.format("%.2f", getTongueSpeed());
 
     if (getIsFroglet()) {
       return "My name is " + getName() + " and I'm a rare froglet! I'm " + getAge() + " months old and my tongue has a speed of " + speed + ".";
