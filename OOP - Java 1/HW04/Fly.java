@@ -16,13 +16,13 @@ public class Fly {
   }
 
   // setters & getters
-  private double getMass() {
+  public double getMass() {
     return this.mass;
   }
   private double setMass(double mass) {
     return this.mass = mass;
   }
-  private double getSpeed() {
+  public double getSpeed() {
     return this.speed;
   }
   private double setSpeed(double speed) {
@@ -42,7 +42,7 @@ public class Fly {
     }
   }
 
-  private void grow(int addedMass) {
+  public void grow(int addedMass) {
     Double newMass = getMass() + addedMass;
     setMass(newMass);
 
