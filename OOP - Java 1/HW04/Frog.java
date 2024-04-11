@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 public class Frog {
   private String name;
   private int age; // months
@@ -69,7 +71,7 @@ public class Frog {
     grow(1);
   }
 
-  public eat(Fly fly) {
+  public void eat(Fly fly) {
     if (fly.isDead()) {
       return;
     }
@@ -83,7 +85,17 @@ public class Frog {
     } else {
       // not caught
       fly.grow(1);
+    }
+  }
 
+  public String toString() {
+    DecimalFormat df = new DecimalFormat("#.00"); 
+    String speed = df.format(getTongueSpeed());
+
+    if (getIsFroglet()) {
+      return "My name is " + getName() + " and I'm a rare froglet! I'm " + getAge() + " months old and my tongue has a speed of " + speed + ".";
+    } else {
+      return "My name is " + getName() + " and I'm a rare frog. I'm " + getAge() + " months old and my tongue has a speed of " + speed + ".";
     }
   }
 }
