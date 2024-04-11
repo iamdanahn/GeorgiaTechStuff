@@ -41,7 +41,10 @@ public class Pond {
     peepaw.grow(4);
 
     // Print out on a new line the description of the Frog named Peepaw given by the toString method.
+    System.out.println(peepaw.toString());
+
     // Print out on a new line the description of the Frog named Pepe given by the toString method.
+    System.out.println(pepe.toString());
 
   }
 
