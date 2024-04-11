@@ -33,11 +33,13 @@ public class Pond {
     
     // Print out on a new line the description of the Frog named Peepo given by the toString method.
     System.out.println(peepo.toString());
-    
-
 
     // Print out on a new line the description of your own Frog given by the toString method.
+    System.out.println(lewis.toString());
+
     // Have the Frog named Peepaw grow by 4 months.
+    peepaw.grow(4);
+
     // Print out on a new line the description of the Frog named Peepaw given by the toString method.
     // Print out on a new line the description of the Frog named Pepe given by the toString method.
 
