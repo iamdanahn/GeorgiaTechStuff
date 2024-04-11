@@ -30,7 +30,7 @@ public class Fly {
   }
 
   // methods
-  private String toString() {
+  public String toString() {
     DecimalFormat df = new DecimalFormat("#.00"); 
     String speed = df.format(getSpeed());
     
