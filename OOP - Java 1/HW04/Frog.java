@@ -1,5 +1,3 @@
-import java.text.DecimalFormat;
-
 public class Frog {
   private String name;
   private int age; // months
@@ -21,7 +19,7 @@ public class Frog {
     this.age = age;
     this.tongueSpeed = tongueSpeed;
   }
-
+  
   protected String getName() {
     return this.name;
   }
@@ -41,7 +39,7 @@ public class Frog {
     return this.tongueSpeed = getTongueSpeed() + newTongueSpeed;
   }
   protected boolean getIsFroglet() {
-    int age = getAge()
+    int age = getAge();
     return age > 1 && age < 7;
   }
   protected boolean setIsFroglet(boolean newIsFroglet) {
@@ -51,7 +49,7 @@ public class Frog {
     return this.species;
   }
   protected String setSpecies(String newSpecies) {
-    return this.species = newSpecies
+    return this.species = newSpecies;
   }
 
   public void grow(int months) {
