@@ -1,6 +1,6 @@
 public class Frog {
   private String name;
-  private int age;
+  private int age; // months
   private double tongueSpeed;
   private boolean isFroglet; // froglets are > 1 month & < 7 months
   
@@ -30,16 +30,17 @@ public class Frog {
     return this.age;
   }
   private int setAge(int newAge) {
-    return this.age = newAge;
+    return this.age = getAge() + newAge; // months
   }
   public double getTongueSpeed() {
     return this.tongueSpeed;
   }
   private double setTongueSpeed(double newTongueSpeed) {
-    return this.tongueSpeed = newTongueSpeed;
+    return this.tongueSpeed = getTongueSpeed() + newTongueSpeed;
   }
   public boolean getIsFroglet() {
-    return this.isFroglet;
+    int age = getAge()
+    return age > 1 && age < 7;
   }
   private boolean setIsFroglet(boolean newIsFroglet) {
     return this.isFroglet = newIsFroglet;
@@ -48,9 +49,19 @@ public class Frog {
   public static void main(String[] args) {
   }
 
-  public 
 
   private void grow(int months) {
-    
+    setAge(months);
+
+    for (int i = 0; i < months; i++) {
+      int ageInMonths = getAge();
+      if (ageInMonths < 12) {
+        setTongueSpeed(1);
+      } else if (ageInMonths >= 30 && getTongueSpeed() > 5) {
+        setTongueSpeed(-1);
+      }
+    }
+
+    setIsFroglet(getIsFroglet());
   }
 }
