@@ -3,7 +3,7 @@ public class Frog {
   private int age; // months
   private double tongueSpeed;
   private boolean isFroglet; // froglets are > 1 month & < 7 months
-  private String species = "Rare Pepe";
+  private static String species = "Rare Pepe";
 
   public Frog(String name, int age, double tongueSpeed) {
     this.name = name;
@@ -43,11 +43,11 @@ public class Frog {
   protected boolean setIsFroglet(boolean newIsFroglet) {
     return this.isFroglet = newIsFroglet;
   }
-  protected String getSpecies() {
-    return this.species;
+  public String getSpecies() {
+    return species;
   }
-  protected String setSpecies(String newSpecies) {
-    return this.species = newSpecies;
+  public void setSpecies(String newSpecies) {
+    this.species = newSpecies;
   }
 
   public void grow(int months) {
@@ -56,7 +56,7 @@ public class Frog {
     for (int i = 0; i < months; i++) {
       int ageInMonths = getAge();
       if (ageInMonths < 12) {
-        setTongueSpeed(1);
+        setTongueSpeed(1 * months);
       } else if (ageInMonths >= 30 && getTongueSpeed() > 5) {
         setTongueSpeed(-1);
       }

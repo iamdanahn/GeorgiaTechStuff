@@ -14,16 +14,16 @@ public class Fly {
   }
 
   // setters & getters
-  protected double getMass() {
+  public double getMass() {
     return this.mass;
   }
-  protected double setMass(double mass) {
+  public double setMass(double mass) {
     return this.mass = mass;
   }
-  protected double getSpeed() {
+  public double getSpeed() {
     return this.speed;
   }
-  protected double setSpeed(double speed) {
+  public double setSpeed(double speed) {
     return this.speed = speed;
   }
 
@@ -35,19 +35,23 @@ public class Fly {
       return "I’m dead, but I used to be a fly with a speed of " + speed;
     } else {
       String mass = String.format("%.2f", getMass());
-      return "I'm a speedy fly with " + speed + " speed and " + mass + " mass";
+      return "I'm a speedy fly with " + speed + " speed and " + mass + " mass.";
     }
   }
 
   public void grow(int addedMass) {
-    Double newMass = getMass() + addedMass;
-    setMass(newMass);
 
-    if (getMass() < 20) {
-      setSpeed(getSpeed() + 1);
-    } else {
-      setSpeed(getSpeed() - 0.5);
+    for (int i = 0; i < addedMass; i++) {
+      Double newMass = getMass() + 1;
+      setMass(newMass);
+    
+      if (getMass() <= 20) {
+        setSpeed(getSpeed() + 1);
+      } else {
+        setSpeed(getSpeed() - 0.5);
+      }
     }
+
   }
 
   public boolean isDead() {
