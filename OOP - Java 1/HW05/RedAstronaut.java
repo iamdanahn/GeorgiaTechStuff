@@ -72,5 +72,13 @@ public class RedAstronaut extends Player implements Imposter {
     return false;
   }
 
-  
+  public String toString() {
+    String statement = this.toString() + "I am an " + this.skill + " player!";
+
+    if (this.getSusLevel() > 15) {
+      statement = statement.toUpperCase();
+    }
+
+    return statement;
+  }
 }
