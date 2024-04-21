@@ -61,9 +61,15 @@ public abstract class Player implements Comparable<Player> {
    * @param p this method takes in a Player to compare values to
    * @return int this value will tell you the ordering of 2 Player objects
    */
+  @Override
   public int compareTo(Player p) {
-    // YOUR CODE HERE
-    return 0; // delete this once you have implemented this method
+    if (this.susLevel.compareTo(p.susLevel) < 0) {
+      return 1;
+    } else if (this.susLevel.compareTo(p.susLevel) < 0) {
+      return -1;
+    } 
+
+    return 0;
   }
 
   /**
