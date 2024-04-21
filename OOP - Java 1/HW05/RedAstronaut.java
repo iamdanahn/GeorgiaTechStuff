@@ -39,7 +39,9 @@ public class RedAstronaut extends Player implements Imposter {
   }
 
   public void freeze(Player p) {
-    
+    if (p instanceof RedAstronaut || p.isFrozen()) {
+      return;
+    }
   }
 
   public void sabotage(Player p) {
