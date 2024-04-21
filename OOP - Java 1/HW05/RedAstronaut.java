@@ -13,6 +13,14 @@ public class RedAstronaut extends Player implements Imposter {
     this.skill = "experienced";
   }
 
+  public void emergencyMeeting() {
+    if (this.isFrozen()) {
+      return;
+    }
 
+    Player[] players = getPlayers();
+    
+
+  }
 
 }
