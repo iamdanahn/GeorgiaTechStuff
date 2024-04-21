@@ -56,5 +56,11 @@ public class RedAstronaut extends Player implements Imposter {
     if (p instanceof RedAstronaut || this.isFrozen()) {
       return;
     }
+
+    if (this.getSusLevel() < 20) {
+      p.setSusLevel((int)(p.getSusLevel() * 1.5));
+    } else {
+      p.setSusLevel((int)(p.getSusLevel() * 1.25));
+    }
   }
 }
