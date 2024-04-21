@@ -52,7 +52,7 @@ public abstract class Player implements Comparable<Player> {
    * This method will be overridden by any child class and will be used to
    * have an emergency meeting.
    */
-  // YOUR CODE HERE
+  public abstract void emergencyMeeting();
 
   /**
    * This method is the compareTo method from the Comparable interface.
