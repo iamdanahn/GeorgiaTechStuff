@@ -38,4 +38,11 @@ public class RedAstronaut extends Player implements Imposter {
     gameOver();
   }
 
+  public void freeze(Player p) {
+    
+  }
+
+  public void sabotage(Player p) {
+  
+  }
 }
