@@ -19,8 +19,23 @@ public class RedAstronaut extends Player implements Imposter {
     }
 
     Player[] players = getPlayers();
-    
 
+    // find player with highest sus level to freeze them if they aren't frozen already
+    int highestSusLevel = 0;
+    Player sussestPlayer;
+    for (Player p : players) {
+      if (!p.isFrozen()) {
+        if (p.getSusLevel() > highestSusLevel && this != p) {
+          sussestPlayer = p;
+        } else if (p.getSusLevel() == highestSusLevel) {
+          return;
+        }
+      }
+    }
+
+    sussestPlayer.setFrozen(true);
+
+    gameOver();
   }
 
 }
