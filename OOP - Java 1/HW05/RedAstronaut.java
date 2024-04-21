@@ -63,4 +63,14 @@ public class RedAstronaut extends Player implements Imposter {
       p.setSusLevel((int)(p.getSusLevel() * 1.25));
     }
   }
+
+  public boolean equals(Object o) {
+    if (o instanceof Player) {
+      Player player = (Player) o;
+      return this.skill.equals(player.skill) && this.equals(o);
+    }
+    return false;
+  }
+
+  
 }
