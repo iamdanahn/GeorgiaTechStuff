@@ -65,8 +65,7 @@ public class BlueAstronaut extends Player implements Crewmate {
   public boolean equals(Object o) {
     if (o instanceof BlueAstronaut) {
       BlueAstronaut player = (BlueAstronaut) o;
-      return this.getName().equals(player.getName()) && 
-        this.isFrozen() == player.isFrozen() &&
+      return super.equals(o) &&
         this.numTasks == player.numTasks &&
         this.taskSpeed == player.taskSpeed;
     }
@@ -74,7 +73,7 @@ public class BlueAstronaut extends Player implements Crewmate {
   }
 
   public String toString() {
-    String statement = this.toString() + ". I have " + this.numTasks + " left over.";
+    String statement = super.toString() + ". I have " + this.numTasks + " left over.";
     if (this.getSusLevel() > 15) {
       statement = statement.toUpperCase();
     }

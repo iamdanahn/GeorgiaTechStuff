@@ -63,13 +63,14 @@ public abstract class Player implements Comparable<Player> {
    */
   @Override
   public int compareTo(Player p) {
-    if (this.getSusLevel() < p.susLevel) {
-      return 1;
-    } else if (this.getSusLevel() > p.susLevel) {
-      return -1;
-    } 
+    // if (this.getSusLevel() < p.susLevel) {
+    //   return 1;
+    // } else if (this.getSusLevel() > p.susLevel) {
+    //   return -1;
+    // } 
+    // return 0;
 
-    return 0;
+    return Integer.compare(this.getSusLevel(), p.getSusLevel());
   }
 
   /**
@@ -94,7 +95,7 @@ public abstract class Player implements Comparable<Player> {
    * @return String of the values that we want to print out
    */
   public String toString() {
-    String frozenString = frozen ? "frozen" : "not frozen";
+    String frozenString = isFrozen() ? "frozen" : "not frozen";
     return "My name is " + this.name + ", and I have a susLevel of "
         + this.susLevel + ". I am currently " + frozenString + ".";
   }
@@ -109,7 +110,7 @@ public abstract class Player implements Comparable<Player> {
     int impostorCount = 0;
     int crewmateCount = 0;
     for (Player p : players) {
-      if (p instanceof Imposter && !p.frozen) {
+      if (p instanceof Impostor && !p.frozen) {
         impostorCount++;
       } else if (p instanceof Crewmate && !p.frozen) {
         crewmateCount++;

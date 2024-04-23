@@ -9,7 +9,7 @@ public class Gameplay {
    RedAstronaut a1 = new RedAstronaut("Liam", 19, "experienced");
    RedAstronaut a2 = new RedAstronaut("Suspicious Person", 100, "expert");
   
-
+    
    // 1. Have RedAstronaut Liam sabotage BlueAstronaut Bob. After the sabotage:
    a1.sabotage(b1);
 

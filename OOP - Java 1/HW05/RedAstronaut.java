@@ -1,4 +1,4 @@
-public class RedAstronaut extends Player implements Imposter {
+public class RedAstronaut extends Player implements Impostor {
 
   // a String that represents skill of the Red crewmate a String value of either inexperienced, experienced, or expert.
   private String skill;
@@ -77,13 +77,13 @@ public class RedAstronaut extends Player implements Imposter {
   public boolean equals(Object o) {
     if (o instanceof RedAstronaut) {
       RedAstronaut player = (RedAstronaut) o;
-      return this.getSkill().equals(player.getSkill()) && this.equals(o);
+      return this.getSkill().equals(player.getSkill()) && super.equals(o);
     }
     return false;
   }
 
   public String toString() {
-    String statement = this.toString() + "I am an " + this.skill + " player!";
+    String statement = super.toString() + "I am an " + this.skill + " player!";
 
     if (this.getSusLevel() > 15) {
       statement = statement.toUpperCase();
