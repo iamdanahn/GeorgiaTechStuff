@@ -59,4 +59,15 @@ public class BlueAstronaut extends Player implements Crewmate {
       this.setSusLevel( (int)this.getSusLevel() * 0.5 );
     }
   }
+
+  public boolean equals(Object o) {
+    if (o instanceof BlueAstronaut) {
+      BlueAstronaut player = (BlueAstronaut) o;
+      return this.name.equals(player.name) && 
+        this.isFrozen() == player.isFrozen() &&
+        this.numTasks == player.numTasks &&
+        this.taskSpeed == player.taskSpeed;
+    }
+    return false;
+  }
 }
