@@ -7,7 +7,9 @@ public class Gameplay {
    BlueAstronaut b4 =  new BlueAstronaut("Angel", 0, 1, 0);
 
    RedAstronaut a1 = new RedAstronaut("Liam", 19, "experienced");
-   RedAstronaut a1 = new RedAstronaut("Suspicious Person", 100, "expert");
+   RedAstronaut a2 = new RedAstronaut("Suspicious Person", 100, "expert");
   
+
+   a
   }
 }
