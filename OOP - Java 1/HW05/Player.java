@@ -63,9 +63,9 @@ public abstract class Player implements Comparable<Player> {
    */
   @Override
   public int compareTo(Player p) {
-    if (this.susLevel.compareTo(p.susLevel) < 0) {
+    if (this.getSusLevel() < p.susLevel) {
       return 1;
-    } else if (this.susLevel.compareTo(p.susLevel) < 0) {
+    } else if (this.getSusLevel() > p.susLevel) {
       return -1;
     } 
 
@@ -109,7 +109,7 @@ public abstract class Player implements Comparable<Player> {
     int impostorCount = 0;
     int crewmateCount = 0;
     for (Player p : players) {
-      if (p instanceof Impostor && !p.frozen) {
+      if (p instanceof Imposter && !p.frozen) {
         impostorCount++;
       } else if (p instanceof Crewmate && !p.frozen) {
         crewmateCount++;

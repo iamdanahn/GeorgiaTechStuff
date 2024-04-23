@@ -3,6 +3,14 @@ public class RedAstronaut extends Player implements Imposter {
   // a String that represents skill of the Red crewmate a String value of either inexperienced, experienced, or expert.
   private String skill;
 
+  public String getSkill() {
+    return this.skill;
+  }
+  public void setSkill(String skill) {
+    this.skill = skill;
+  }
+
+
   public RedAstronaut(String name, int susLevel, String skill) {
     super(name, susLevel);
     this.skill = skill;
@@ -22,7 +30,7 @@ public class RedAstronaut extends Player implements Imposter {
 
     // find player with highest sus level to freeze them if they aren't frozen already
     int highestSusLevel = 0;
-    Player sussestPlayer;
+    Player sussestPlayer = null;
     for (Player p : players) {
       if (!p.isFrozen()) {
         if (p.getSusLevel() > highestSusLevel && this != p) {
@@ -33,7 +41,9 @@ public class RedAstronaut extends Player implements Imposter {
       }
     }
 
-    sussestPlayer.setFrozen(true);
+    if (sussestPlayer != null) {
+      sussestPlayer.setFrozen(true);
+    }
 
     gameOver();
   }
@@ -65,9 +75,9 @@ public class RedAstronaut extends Player implements Imposter {
   }
 
   public boolean equals(Object o) {
-    if (o instanceof Player) {
-      Player player = (Player) o;
-      return this.skill.equals(player.skill) && this.equals(o);
+    if (o instanceof RedAstronaut) {
+      RedAstronaut player = (RedAstronaut) o;
+      return this.getSkill().equals(player.getSkill()) && this.equals(o);
     }
     return false;
   }

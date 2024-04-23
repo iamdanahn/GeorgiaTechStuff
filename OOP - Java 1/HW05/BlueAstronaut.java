@@ -24,7 +24,7 @@ public class BlueAstronaut extends Player implements Crewmate {
     // find player with highest sus level to freeze them if they aren't frozen
     // already
     int highestSusLevel = 0;
-    Player sussestPlayer;
+    Player sussestPlayer = null;
     for (Player p : players) {
       if (!p.isFrozen()) {
         if (p.getSusLevel() > highestSusLevel && this != p) {
@@ -35,7 +35,9 @@ public class BlueAstronaut extends Player implements Crewmate {
       }
     }
 
-    sussestPlayer.setFrozen(true);
+    if (sussestPlayer != null) {
+      sussestPlayer.setFrozen(true);
+    }
 
     gameOver();
   }
@@ -56,14 +58,14 @@ public class BlueAstronaut extends Player implements Crewmate {
 
     if (this.numTasks == 0 && originalNumTasks > 0) {
       System.out.println("I have complete all my tasks");
-      this.setSusLevel( (int)this.getSusLevel() * 0.5 );
+      this.setSusLevel( (int)(this.getSusLevel() * 0.5) );
     }
   }
 
   public boolean equals(Object o) {
     if (o instanceof BlueAstronaut) {
       BlueAstronaut player = (BlueAstronaut) o;
-      return this.name.equals(player.name) && 
+      return this.getName().equals(player.getName()) && 
         this.isFrozen() == player.isFrozen() &&
         this.numTasks == player.numTasks &&
         this.taskSpeed == player.taskSpeed;
@@ -76,6 +78,7 @@ public class BlueAstronaut extends Player implements Crewmate {
     if (this.getSusLevel() > 15) {
       statement = statement.toUpperCase();
     }
-    System.out.println(statement);
+    // System.out.println(statement);
+    return statement;
   }
 }
