@@ -46,4 +46,14 @@ public abstract class Pet {
 
     System.out.println(statement);
   }
+
+  public boolean equals(Object o) {
+    if (o instanceof Pet) {
+      Pet other = (Pet)o;
+
+      return getName().equals(other.getName())
+    }
+    
+    return false;
+  }
 }
