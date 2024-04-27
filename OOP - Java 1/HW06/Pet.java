@@ -21,6 +21,8 @@ public abstract class Pet {
     return this.painLevel;
   }
   public void setHealth(double health) {
+    this.health = health;
+
     if (health > 1.0) {
       this.health = 1.0;
     } else if (health < 0.0) {
@@ -28,6 +30,8 @@ public abstract class Pet {
     }
   }
   public void setPainLevel(double painLevel) {
+    this.painLevel = painLevel
+    
     if (painLevel > 10) {
       this.painLevel = 10;
     } else if (painLevel < 1) {
