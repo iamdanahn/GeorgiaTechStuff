@@ -1,4 +1,4 @@
-public class InvalidPetException extends Exception {
+public class InvalidPetException extends RuntimeException {
   // An unchecked exception with two constructors
 
   public InvalidPetException() {
