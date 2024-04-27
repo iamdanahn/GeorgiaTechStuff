@@ -5,6 +5,9 @@ public class Cat extends Pet {
     super(name, health, painLevel);
     setMiceCaught(miceCaught);
   }
+  public Cat(String name, double health, int painLevel) {
+    this(name, health, painLevel, 0);
+  }
 
   public int getMiceCaught() {
     return this.miceCaught;
