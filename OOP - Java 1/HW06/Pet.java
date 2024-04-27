@@ -56,4 +56,9 @@ public abstract class Pet {
     
     return false;
   }
+
+  protected void heal() {
+    setHealth(1.0);
+    setPainLevel(1);
+  }
 }
