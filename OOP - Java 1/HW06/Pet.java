@@ -38,4 +38,12 @@ public abstract class Pet {
   // Should be an abstract method that returns the time taken (in minutes) to treat the pet
   public abstract int treat();
 
+  public void speak() {
+    String statement = “Hello! My name is “ + getName();
+    if (getPainLevel() > 5) {
+      statement = statement.toUpperCase();
+    }
+
+    System.out.println(statement);
+  }
 }
