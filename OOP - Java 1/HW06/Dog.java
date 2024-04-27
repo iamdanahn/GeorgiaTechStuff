@@ -51,4 +51,13 @@ public class Dog extends Pet {
 
     return String.join(" ", barks);
   }
+
+  public boolean equals(Object o) {
+    if (o instanceof Dog) {
+      Dog other = (Dog)o;
+      return (getDroolRate() == other.getDroolRate()) && super.equals(o);
+    }
+    
+    return false;
+  }
 }
