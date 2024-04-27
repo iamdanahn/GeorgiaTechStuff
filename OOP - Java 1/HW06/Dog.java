@@ -26,11 +26,11 @@ public class Dog extends Pet {
 
     double droolRate = getDroolRate();
     if (droolRate < 3.5) {
-      timeTaken = Math.ceil((getPainLevel() * 2) / getHealth());
+      timeTaken = (int)Math.ceil((getPainLevel() * 2) / getHealth());
     } else if (droolRate >= 3.5 && droolRate <= 7.5) {
-      timeTaken = getPainLevel() / getHealth();
+      timeTaken = (int)(getPainLevel() / getHealth());
     } else {
-      timeTaken = Math.ceil(getPainLevel() / (getHealth() * 2));
+      timeTaken = (int)Math.ceil(getPainLevel() / (getHealth() * 2));
     }
 
     return timeTaken;
@@ -49,7 +49,7 @@ public class Dog extends Pet {
       }
     }
 
-    return String.join(" ", barks);
+    System.out.println(String.join(" ", barks));
   }
 
   public boolean equals(Object o) {
