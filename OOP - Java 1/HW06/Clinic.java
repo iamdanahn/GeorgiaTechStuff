@@ -11,12 +11,9 @@ public class Clinic() {
   private int day;
 
   public Clinic(File file) {
-    patientFile = file;
-    Scanner fileScan = null;
-
+    this.patientFile = file;
   }
   public Clinic(String fileName) {
-    String inputFile = fileName.substring(0, fileName.length() - 4);
     File fileIn = new File(inputFile);
     this(fileIn);
   }
@@ -25,17 +22,74 @@ public class Clinic() {
     File fileIn = new File(f);
     Scanner scan = null;
     String[] info = new String[4];
-
+    
     scan = new Scanner(fileIn);
-    int index = 0;
-    while (scan.hasNext()) {
-      String part = scan.next(",")
+    while (scan.hasNextLine()) {
+      String line = scan.nextLine();
+      String[] petInfo = line.split(",");
+      
+      String name = petInfo[0];
+      String typeOfPet = petInfo[1];
+      String count = petInfo[2];
+      String entryTime = petInfo[3];
+      
+      if (typeOfPet != "Dog" || typeOfPet != "Cat") {
+        throw InvalidPetException;
+      }
+
+      Scanner input = new Scanner(System.in);
+      System.out.printf("Consultation for %s the %s at %s \nWhat is the health of %s?\n", name, typeOfPet, entryTime, name);
+      
+      int health = null;
+      boolean validNum = false;
+      while (!validNum) {
+        
+        if (input.hasNextInt()) {
+          health = input.nextInt();
+          validNum = true;
+        } else {
+          System.err.println("Please enter a number");
+        }
+      }
+
+      if (typeOfPet == "Dog") {
+        Dog pet = new Dog(name, health, health))
+      }
+      speak
+
+
+
     }
   }
 
   public String nextDay(String fileName) throws FileNotFoundException {
   }
 
+
+  // Takes in this format:
+  // [Name],[Species],[DroolRate/MiceCaught],[Day],[EntryTime],[ExitTime],[InitialHealth],[InitialPainLevel]
+  public boolean addToFile(String patientInfo) {
+    try {
+      
+
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  private String addTime(String timeIn, int treatmentTime) {
+    String[] time = timeIn.split(":");
+    int hours = (int)time[0];
+    int mins = (int)time[1];
+
+    int totalTime = hours * 60 + mins + treatmentTime;
+
+    int totalHours = totalTime / 60;
+    int totalMins = totalTime % 60;
+
+    return totalHours.toString() + ":" + totalMins.toString();
+  }
 }
 
 // Patients.csv file
@@ -47,6 +101,7 @@ public class Clinic() {
 // Margie,Cat,8,Day 2,1653,1656,0.6,3
 
 // Appointments.csv file
+// [Name],[Species],[DroolRate/MiceCaught],[EntryTime]
 // Pillow,Cat,5,1839 
 // Atlas,Cat,2,1742 
 // Cocoa,Dog,1.4,1630 
