@@ -25,11 +25,11 @@ public class Cat extends Pet {
 
     int miceCaught = getMiceCaught();
     if (miceCaught < 4) {
-      timeTaken = Math.ceil((getPainLevel() * 2) / getHealth());
+      timeTaken = (int)Math.ceil((getPainLevel() * 2) / getHealth());
     } else if (miceCaught >= 4 && miceCaught <= 7) {
-      timeTaken = getPainLevel() / getHealth();
+      timeTaken = (int)(getPainLevel() / getHealth());
     } else {
-      timeTaken = Math.ceil(getPainLevel() / (getHealth() * 2));
+      timeTaken = (int)Math.ceil(getPainLevel() / (getHealth() * 2));
     }
 
     return timeTaken;
@@ -48,7 +48,7 @@ public class Cat extends Pet {
       }
     }
 
-    return String.join(" ", mice);
+    System.out.println(String.join(" ", mice));
   }
 
   public boolean equals(Object o) {
