@@ -18,4 +18,20 @@ public class Cat extends Pet {
       this.miceCaught = 0;
     }
   }
+
+  public int treat() {
+    int timeTaken;
+    heal();
+
+    int miceCaught = getMiceCaught();
+    if (miceCaught < 4) {
+      timeTaken = Math.ceil((getPainLevel() * 2) / getHealth());
+    } else if (miceCaught >= 4 && miceCaught <= 7) {
+      timeTaken = getPainLevel() / getHealth();
+    } else {
+      timeTaken = Math.ceil(getPainLevel() / (getHealth() * 2));
+    }
+
+    return timeTaken;
+  }
 }
