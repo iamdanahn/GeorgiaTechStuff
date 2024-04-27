@@ -29,8 +29,8 @@ public abstract class Pet {
       this.health = 0.0;
     }
   }
-  public void setPainLevel(double painLevel) {
-    this.painLevel = painLevel
+  public void setPainLevel(int painLevel) {
+    this.painLevel = painLevel;
     
     if (painLevel > 10) {
       this.painLevel = 10;
@@ -43,7 +43,7 @@ public abstract class Pet {
   public abstract int treat();
 
   public void speak() {
-    String statement = “Hello! My name is “ + getName();
+    String statement = "Hello! My name is " + getName();
     if (getPainLevel() > 5) {
       statement = statement.toUpperCase();
     }
@@ -55,7 +55,7 @@ public abstract class Pet {
     if (o instanceof Pet) {
       Pet other = (Pet)o;
 
-      return getName().equals(other.getName())
+      return getName().equals(other.getName());
     }
     
     return false;
