@@ -35,4 +35,20 @@ public class Dog extends Pet {
 
     return timeTaken;
   }
+
+  public void speak() {
+    super.speak();
+    int painLevel = getPainLevel();
+    String[] barks = new String[painLevel];
+
+    for (int i = 0; i < painLevel; i++) {
+      if (painLevel > 5) {
+        barks[i] = "BARK";
+      } else {
+        barks[i] = "bark";
+      }
+    }
+
+    return String.join(" ", barks);
+  }
 }
