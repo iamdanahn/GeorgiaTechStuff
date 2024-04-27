@@ -11,6 +11,15 @@ public class Pet {
     setPainLevel(painLevel);
   }
 
+  public String getName() {
+    return this.name;
+  }
+  public double getHealth() {
+    return this.health;
+  }
+  public int getPainLevel() {
+    return this.painLevel;
+  }
   public void setHealth(double health) {
     if (health > 1.0) {
       this.health = 1.0;
