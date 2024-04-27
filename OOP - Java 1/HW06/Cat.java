@@ -34,4 +34,29 @@ public class Cat extends Pet {
 
     return timeTaken;
   }
+
+  public void speak() {
+    super.speak();
+    int miceCaught = getMiceCaught();
+    String[] mice = new String[miceCaught];
+
+    for (int i = 0; i < miceCaught; i++) {
+      if (miceCaught > 5) {
+        mice[i] = "MEOW";
+      } else {
+        mice[i] = "meow";
+      }
+    }
+
+    return String.join(" ", mice);
+  }
+
+  public boolean equals(Object o) {
+    if (o instanceof Cat) {
+      Cat other = (Cat) o;
+      return (getMiceCaught() == other.getMiceCaught()) && super.equals(o);
+    }
+
+    return false;
+  }
 }
