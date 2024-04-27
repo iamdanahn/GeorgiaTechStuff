@@ -1,4 +1,4 @@
-public class Pet {
+public abstract class Pet {
 // This class represents any pet that would seek consultation from the clinic.
 
   private String name;
@@ -34,5 +34,8 @@ public class Pet {
       this.painLevel = 1;
     }
   }
+
+  // Should be an abstract method that returns the time taken (in minutes) to treat the pet
+  public abstract int treat();
 
 }
