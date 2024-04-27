@@ -19,4 +19,20 @@ public class Dog extends Pet {
       this.droolRate = 0.5;
     }
   }
+
+  public int treat() {
+    int timeTaken;
+    heal();
+
+    double droolRate = getDroolRate();
+    if (droolRate < 3.5) {
+      timeTaken = Math.ceil((getPainLevel() * 2) / getHealth());
+    } else if (droolRate >= 3.5 && droolRate <= 7.5) {
+      timeTaken = getPainLevel() / getHealth();
+    } else {
+      timeTaken = Math.ceil(getPainLevel() / (getHealth() * 2));
+    }
+
+    return timeTaken;
+  }
 }
