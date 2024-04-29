@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class Clinic() {
+public class Clinic {
   // This is a class representing the vet clinic.
 
   private File patientFile;
@@ -12,98 +12,159 @@ public class Clinic() {
 
   public Clinic(File file) {
     this.patientFile = file;
+    this.day = 1;
   }
   public Clinic(String fileName) {
-    File fileIn = new File(inputFile);
-    this(fileIn);
+    this(new File(fileName));
   }
 
   public String nextDay(File f) throws FileNotFoundException {
-    File fileIn = new File(f);
-    Scanner scan = null;
-    String[] info = new String[4];
-    
-    scan = new Scanner(fileIn);
-    while (scan.hasNextLine()) {
-      String line = scan.nextLine();
+    day++;
+
+    String output = "";
+
+    Scanner fileScan = new Scanner(f);
+    Scanner input = new Scanner(System.in);
+    String line = null;
+
+    while (fileScan.hasNextLine()) {
+      line = fileScan.nextLine();
       String[] petInfo = line.split(",");
-      
       String name = petInfo[0];
-      String typeOfPet = petInfo[1];
-      String count = petInfo[2];
-      String entryTime = petInfo[3];
-      
-      if (typeOfPet != "Dog" || typeOfPet != "Cat") {
-        throw InvalidPetException;
+      String species = petInfo[1];
+      String stat = petInfo[2];
+      String timeIn = petInfo[3];
+
+      if ( !(species.equals("Dog") || !species.equals("Cat") )) {
+        throw new InvalidPetException();
       }
 
-      Scanner input = new Scanner(System.in);
-      System.out.printf("Consultation for %s the %s at %s \nWhat is the health of %s?\n", name, typeOfPet, entryTime, name);
-      
-      int health = null;
-      boolean validNum = false;
-      while (!validNum) {
-        
-        if (input.hasNextInt()) {
-          health = input.nextInt();
-          validNum = true;
+      System.out.printf("Consultation for %s the %s at %s.\n", name, species, timeIn);
+      double health = 0;
+      int painLevel = 0;
+      boolean validHealth = false;
+      boolean validPain = false;
+      while (!validHealth) {
+        System.out.printf("What is the health of %s?\n", name);
+
+        if (input.hasNextDouble()) {
+          health = input.nextDouble();
+          validHealth = true;
         } else {
-          System.err.println("Please enter a number");
+          input.nextLine();
+          System.out.println("Please enter a number");
         }
       }
 
-      if (typeOfPet == "Dog") {
-        Dog pet = new Dog(name, health, health))
+      while (!validPain) {
+        System.out.printf("On a scale of 1 to 10, how much pain is %s " + "in right now?\n", name);
+
+        if (input.hasNextInt()) {
+          painLevel = input.nextInt();
+          validPain = true;
+        } else {
+          input.nextLine();
+          System.out.println("Please enter a number");
+        }
       }
-      speak
 
+      Pet petPatient;
+      switch (species) {
+        case "Dog":
+          petPatient = new Dog(name, health, painLevel, Double.parseDouble(stat));
+          break;
+        case "Cat":
+          petPatient = new Cat(name, health, painLevel, Integer.parseInt(stat));
+          break;
+        default:
+          throw new InvalidPetException();
+      }
 
-
+      health = petPatient.getHealth();
+      painLevel = petPatient.getPainLevel();
+      petPatient.speak();
+      int treatmentTime = petPatient.treat();
+      String timeOut = addTime(timeIn, treatmentTime);
+      output += String.format("%s, %s, %s, Day %d, %s, %s, %s, %d\n", name, species, stat, day, timeIn, timeOut, String.valueOf(health), painLevel);
     }
+
+    fileScan.close();
+    input.close();
+    return output.trim();
   }
 
   public String nextDay(String fileName) throws FileNotFoundException {
+    return nextDay(new File(fileName));
   }
 
 
   // Takes in this format:
   // [Name],[Species],[DroolRate/MiceCaught],[Day],[EntryTime],[ExitTime],[InitialHealth],[InitialPainLevel]
   public boolean addToFile(String patientInfo) {
+    Scanner fileScan = null;
+    PrintWriter filePrint = null;
+    String stringOutput = "";
+    
     try {
-      
+      fileScan = new Scanner(patientFile);
 
+      boolean newPatient = true;
+      int firstDelim = patientInfo.indexOf(",");
+      String name = patientInfo.substring(0, firstDelim);
+
+      while (fileScan.hasNextLine()) {
+        String line = fileScan.nextLine();
+
+        if (line.startsWith(name)) {
+          newPatient = false;
+          int currentDelim = firstDelim;
+          for (int i = 2; i <= 3; i++) {
+            int nextDelim = patientInfo.indexOf(",", currentDelim + 1);
+            currentDelim = nextDelim;
+          }
+
+          line += patientInfo.substring(currentDelim);
+        }
+        stringOutput += (line + "\n");
+      }
+
+      fileScan.close();
+      filePrint = new PrintWriter(patientFile);
+      filePrint.print(stringOutput);
       return true;
-    } catch (err) {
+    } catch (Exception e) {
       return false;
+    } finally {
+      
+      if (fileScan != null) {
+        fileScan.close();
+      }
+      if (filePrint != null) {
+        filePrint.close();
+      }
     }
   }
 
   private String addTime(String timeIn, int treatmentTime) {
-    String[] time = timeIn.split(":");
-    int hours = (int)time[0];
-    int mins = (int)time[1];
+    int hours = Integer.parseInt(timeIn.substring(0, 2));
+    int mins = Integer.parseInt(timeIn.substring(2));
+    int hourOut = hours + (int) ((mins + treatmentTime) / 60);
+    int minOut = (mins + treatmentTime) % 60;
 
-    int totalTime = hours * 60 + mins + treatmentTime;
+    String output = "";
+    output += (hourOut < 10) ? ("0" + hourOut) : hourOut;
+    output += (minOut < 10) ? ("0" + minOut) : minOut;
+    return output;
+    
+    // String[] time = timeIn.split(":");
+    // int hours = Integer.parseInt(time[0]);
+    // int mins = Integer.parseInt(time[1]);
 
-    int totalHours = totalTime / 60;
-    int totalMins = totalTime % 60;
+    // int totalTime = hours * 60 + mins + treatmentTime;
 
-    return totalHours.toString() + ":" + totalMins.toString();
+    // int totalHours = totalTime / 60;
+    // int totalMins = totalTime % 60;
+
+    // return totalHours + ":" + totalMins;
   }
 }
-
-// Patients.csv file
-// [Name],[Species],[DroolRate/MiceCaught],[Day],[EntryTime],[ExitTime],[InitialHealth],[InitialPainLevel]
-// Freckles,Cat,5,Day 2,1243,1249,0.68,4 
-// Spots,Dog,6.6,Day 1,1713,1727,0.7,10,Day 3,1240,1245,0.8,4 
-// Susan,Cat,2,Day 3,1403,1515,0.11,4 
-// Dolf,Dog,0.1,Day 1,1523,1539,0.9,7 
-// Margie,Cat,8,Day 2,1653,1656,0.6,3
-
-// Appointments.csv file
-// [Name],[Species],[DroolRate/MiceCaught],[EntryTime]
-// Pillow,Cat,5,1839 
-// Atlas,Cat,2,1742 
-// Cocoa,Dog,1.4,1630 
-// Starbs,Cat,10,1240 
-// Tucker,Dog,7.9,0918

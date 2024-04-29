@@ -13,26 +13,23 @@ public class Cat extends Pet {
     return this.miceCaught;
   }
   public void setMiceCaught(int miceCaught) {
-    this.miceCaught = miceCaught;
-    if (miceCaught < 0) {
-      this.miceCaught = 0;
-    }
+    this.miceCaught = miceCaught < 0 ? 0 : miceCaught;
   }
 
   public int treat() {
-    int timeTaken;
-    heal();
-
+    int treatmentTime;
+    
     int miceCaught = getMiceCaught();
     if (miceCaught < 4) {
-      timeTaken = (int)Math.ceil((getPainLevel() * 2) / getHealth());
+      treatmentTime = (int)Math.ceil((getPainLevel() * 2) / getHealth());
     } else if (miceCaught >= 4 && miceCaught <= 7) {
-      timeTaken = (int)(getPainLevel() / getHealth());
+      treatmentTime = (int)(getPainLevel() / getHealth());
     } else {
-      timeTaken = (int)Math.ceil(getPainLevel() / (getHealth() * 2));
+      treatmentTime = (int)Math.ceil(getPainLevel() / (getHealth() * 2));
     }
-
-    return timeTaken;
+    
+    heal();
+    return treatmentTime;
   }
 
   public void speak() {
@@ -52,11 +49,13 @@ public class Cat extends Pet {
   }
 
   public boolean equals(Object o) {
-    if (o instanceof Cat) {
-      Cat other = (Cat) o;
-      return (getMiceCaught() == other.getMiceCaught()) && super.equals(o);
-    }
+    return (super.equals(o) && ( ((Cat) o).miceCaught == miceCaught) );
 
-    return false;
+    // if (o instanceof Cat) {
+    //   Cat other = (Cat) o;
+    //   return (getMiceCaught() == other.getMiceCaught()) && super.equals(o);
+    // }
+
+    // return false;
   }
 }

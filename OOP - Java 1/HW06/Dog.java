@@ -21,19 +21,19 @@ public class Dog extends Pet {
   }
 
   public int treat() {
-    int timeTaken;
-    heal();
-
+    int treatmentTime;
+    
     double droolRate = getDroolRate();
     if (droolRate < 3.5) {
-      timeTaken = (int)Math.ceil((getPainLevel() * 2) / getHealth());
+      treatmentTime = (int)Math.ceil((getPainLevel() * 2) / getHealth());
     } else if (droolRate >= 3.5 && droolRate <= 7.5) {
-      timeTaken = (int)(getPainLevel() / getHealth());
+      treatmentTime = (int)(getPainLevel() / getHealth());
     } else {
-      timeTaken = (int)Math.ceil(getPainLevel() / (getHealth() * 2));
+      treatmentTime = (int)Math.ceil(getPainLevel() / (getHealth() * 2));
     }
-
-    return timeTaken;
+    
+    heal();
+    return treatmentTime;
   }
 
   public void speak() {
