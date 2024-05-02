@@ -68,6 +68,46 @@ public class GenericLinkedList<E> {
     return found;
   }
 
+  public E removeFromFront() {
+    // Node<E> current = head;
+    // Node<E> nodeToRemove = current.next;
+    // current.next = nodeToRemove.next;
+    // return nodeToRemove.data;
+    if (isEmpty()) {
+      return null;
+    }
+    E removedData = head.data;
+    head = head.next;
+    return removedData;
+  }
+
+  public E removeFromRear() {
+    // Node<E> current = head;
+    // Node<E> prev = null;
+    // while (current.next != null) { // the last node is the one with next = null
+    //   prev = current;
+    //   current = current.next;
+    // }
+    // prev.next = null;
+    // return current.data;
+
+    E removedData;
+    if (isEmpty()) {
+      removedData = null;
+    } else if (head.next == null) {
+      removedData = head.data;
+      head = null;
+    } else {
+      Node<E> current = head;
+      while(current.next.next != null) {
+        current = current.next;
+      }
+      removedData = current.next.data;
+      current.next = null;
+    }
+    return removedData;
+  }
+
   public static void main(String[] args) {
     GenericLinkedList<String> favBabySongs = new GenericLinkedList<>();
     favBabySongs.addToFront("Humpty Dumpty");
