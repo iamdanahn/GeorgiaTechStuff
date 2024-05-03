@@ -10,5 +10,10 @@ public class Linkedlist implements List<T> {
     this.tail = null;
   }
 
-  
+  public Node<T> getHead() {
+    return this.head;
+  }
+  public Node<T> getTail() {
+    return this.tail;
+  }
 }
