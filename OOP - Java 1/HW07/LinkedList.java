@@ -46,6 +46,20 @@ public class Linkedlist implements List<T> {
     size++;
   }
 
+  public T getAtIndex(int index) {
+    if (index < 0 || index > size()) {
+      throw IllegalArgumentException("Your index is out of the list bounds");
+    }
+    Node<T> current = head;
+    int i = 0;
+    while (i != index) {
+      current = current.next;
+      i++;
+    }
+
+    return current.data;
+  }
+
   public boolean isEmpty() {
     return size() == 0;
   }
