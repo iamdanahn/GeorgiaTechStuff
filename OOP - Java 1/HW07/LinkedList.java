@@ -87,7 +87,34 @@ public class Linkedlist implements List<T> {
     return removedData;
   }
 
-  
+  public T remove(T data) {
+    if (data == null) {
+      throw IllegalArgumentException("You cannot remove null data from this list");
+    }
+    Node<T> prev = null;
+    Node<T> current = head;
+    while (current != null) {
+      if (current.data == data) {
+        T removedData = current.data;
+        
+        if (prev == null) {
+          head = head.next;
+        }
+
+        if (current.next == null) {
+          tail = prev;
+        }
+        size--;
+
+        prev.next = current.next;
+        return removedData;
+      }
+      prev = current;
+      current = current.next;
+    }
+
+    throw NoSuchElementException("The data is not present in the list");
+  }
 
 
 
