@@ -1,6 +1,6 @@
 import java.util.NoSuchElementException;
 
-public class Linkedlist implements List<T> {
+public class LinkedList<T> implements List<T> {
   private Node<T> head;
   private Node<T> tail;
   private int size;
@@ -20,9 +20,9 @@ public class Linkedlist implements List<T> {
 
   public void addAtIndex(T data, int index) {
     if (index < 0 || isEmpty()) {
-      throw IllegalArgumentException("Your index is out of the list bounds");
+      throw new IllegalArgumentException("Your index is out of the list bounds");
     } else if (data == null) {
-      throw IllegalArgumentException("You cannot add null data to the list");
+      throw new IllegalArgumentException("You cannot add null data to the list");
     }
     Node<T> nodeToAdd = new Node<T>(data);
 
@@ -48,7 +48,7 @@ public class Linkedlist implements List<T> {
 
   public T getAtIndex(int index) {
     if (index < 0 || index > size()) {
-      throw IllegalArgumentException("Your index is out of the list bounds");
+      throw new IllegalArgumentException("Your index is out of the list bounds");
     }
     Node<T> current = head;
     int i = 0;
@@ -62,7 +62,7 @@ public class Linkedlist implements List<T> {
 
   public T removeAtIndex(int index) {
     if (index < 0 || index > size()) {
-      throw IllegalArgumentException("Your index is out of the list bounds");
+      throw new IllegalArgumentException("Your index is out of the list bounds");
     }
 
     Node<T> prev = null;
@@ -89,7 +89,7 @@ public class Linkedlist implements List<T> {
 
   public T remove(T data) {
     if (data == null) {
-      throw IllegalArgumentException("You cannot remove null data from this list");
+      throw new IllegalArgumentException("You cannot remove null data from this list");
     }
     Node<T> prev = null;
     Node<T> current = head;
@@ -113,7 +113,7 @@ public class Linkedlist implements List<T> {
       current = current.next;
     }
 
-    throw NoSuchElementException("The data is not present in the list");
+    throw new NoSuchElementException("The data is not present in the list");
   }
 
   public void clear() {
