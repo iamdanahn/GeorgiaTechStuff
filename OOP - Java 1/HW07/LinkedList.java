@@ -116,7 +116,11 @@ public class Linkedlist implements List<T> {
     throw NoSuchElementException("The data is not present in the list");
   }
 
-
+  public void clear() {
+    head = null;
+    tail = null;
+    size = 0;
+  }
 
   public boolean isEmpty() {
     return size() == 0;
