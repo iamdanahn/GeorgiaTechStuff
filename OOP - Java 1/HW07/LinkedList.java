@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Linkedlist implements List<T> {
   private Node<T> head;
@@ -8,6 +8,7 @@ public class Linkedlist implements List<T> {
   public LinkedList() {
     this.head = null;
     this.tail = null;
+    this.size = 0;
   }
 
   public Node<T> getHead() {
@@ -15,5 +16,13 @@ public class Linkedlist implements List<T> {
   }
   public Node<T> getTail() {
     return this.tail;
+  }
+
+  public boolean isEmpty() {
+    return size() == 0;
+  }
+
+  public int size() {
+    return this.size;
   }
 }
