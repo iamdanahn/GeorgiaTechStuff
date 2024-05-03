@@ -68,6 +68,24 @@ public class GenericLinkedList<E> {
     return found;
   }
 
+  // public E get(E target) {
+  //   if (isEmpty()) { // empty lists can't contain the target
+  //     return false;
+  //   }
+
+  //   boolean found = false;
+  //   Node<E> current = head; // traversal starts at the front
+
+  //   while ((current != null) && (!found)) {
+  //     if (target.equals(current.data)) {
+  //       found = true;
+  //     } else {
+  //       current = current.next;
+  //     }
+  //   }
+  //   return found;
+  // }
+
   public E removeFromFront() {
     // Node<E> current = head;
     // Node<E> nodeToRemove = current.next;
