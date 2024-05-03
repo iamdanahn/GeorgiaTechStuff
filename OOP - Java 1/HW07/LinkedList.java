@@ -60,6 +60,37 @@ public class Linkedlist implements List<T> {
     return current.data;
   }
 
+  public T removeAtIndex(int index) {
+    if (index < 0 || index > size()) {
+      throw IllegalArgumentException("Your index is out of the list bounds");
+    }
+
+    Node<T> prev = null;
+    Node<T> current = head;
+    int i = 0;
+    while (i != index) {
+      prev = current;
+      current = current.next;
+      i++;
+    }
+    T removedData = current.data;
+    prev.next = current.next;
+    size--;
+    
+    if (index == 0) {
+      head = head.next;
+    }
+    if (index == size()) {
+      tail = prev.next;
+    }
+
+    return removedData;
+  }
+
+  
+
+
+
   public boolean isEmpty() {
     return size() == 0;
   }
