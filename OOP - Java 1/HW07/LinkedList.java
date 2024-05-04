@@ -19,72 +19,82 @@ public class LinkedList<T> implements List<T> {
   }
 
   public void addAtIndex(T data, int index) {
-    if (index < 0 || isEmpty()) {
+    if (index < 0 || index > size()) {
       throw new IllegalArgumentException("Your index is out of the list bounds");
     } else if (data == null) {
       throw new IllegalArgumentException("You cannot add null data to the list");
     }
-    Node<T> nodeToAdd = new Node<T>(data);
+    Node<T> newNode = new Node<T>(data);
 
-    Node<T> current = head;
-    Node<T> prev = null;
-    int i = 0;
-    while (i != index) {
-      prev = current;
-      current = current.next;
-      i++;
-    }
-    
-    prev.next = nodeToAdd;
-    nodeToAdd.next = current;
     if (index == 0) {
-      head = nodeToAdd;
-    }
-    if (index == size()) {
-      tail = nodeToAdd;
+      newNode.setNext(head);
+      head = newNode;
+      if (size == 0) {
+        tail = newNode;
+      }
+    } else {
+      Node<T> current = head;
+      Node<T> prev = null;
+      int i = 0;
+      while (i != index) {
+        prev = current;
+        current = current.getNext();
+        i++;
+      }
+      
+      prev.setNext(newNode);
+      newNode.setNext(current);
+      if (index == size()) {
+        tail = newNode;
+      }
     }
     size++;
   }
 
   public T getAtIndex(int index) {
-    if (index < 0 || index > size()) {
+    if (index < 0 || index >= size()) {
       throw new IllegalArgumentException("Your index is out of the list bounds");
     }
     Node<T> current = head;
     int i = 0;
     while (i != index) {
-      current = current.next;
+      current = current.getNext();
       i++;
     }
 
-    return current.data;
+    return current.getData();
   }
 
   public T removeAtIndex(int index) {
-    if (index < 0 || index > size()) {
+    if (index < 0 || index >= size()) {
       throw new IllegalArgumentException("Your index is out of the list bounds");
     }
 
-    Node<T> prev = null;
-    Node<T> current = head;
-    int i = 0;
-    while (i != index) {
-      prev = current;
-      current = current.next;
-      i++;
-    }
-    T removedData = current.data;
-    prev.next = current.next;
-    size--;
+    Node<T> removedNode = head;
     
     if (index == 0) {
-      head = head.next;
+      removedNode = head;
+      head = head.getNext();
+      if (size() == 1) {
+        tail = null;
+      }
+    } else {
+      Node<T> prev = head;
+      int i = 0;
+      while (i < index - 1) {
+        prev = prev.getNext();
+        i++;
+      }
+      removedNode = prev.getNext();
+      prev.setNext(removedNode.getNext());
+      
+      if (index == size() - 1) {
+        tail = prev;
+      }
     }
-    if (index == size()) {
-      tail = prev.next;
-    }
-
-    return removedData;
+    
+    size--;
+    return removedNode.getData();
   }
 
   public T remove(T data) {
@@ -94,23 +104,27 @@ public class LinkedList<T> implements List<T> {
     Node<T> prev = null;
     Node<T> current = head;
     while (current != null) {
-      if (current.data == data) {
-        T removedData = current.data;
+      if (current.getData().equals(data)) {
+        T removedData = current.getData();
         
         if (prev == null) {
-          head = head.next;
-        }
+          head = head.getNext();
 
-        if (current.next == null) {
-          tail = prev;
+          if (size() == 1) {
+            tail = null;
+          }
+        } else {
+          prev.setNext(current.getNext());
+          if (current.getNext() == null) {
+            tail = prev;
+          }
         }
+        
         size--;
-
-        prev.next = current.next;
         return removedData;
       }
       prev = current;
-      current = current.next;
+      current = current.getNext();
     }
 
     throw new NoSuchElementException("The data is not present in the list");
@@ -123,7 +137,7 @@ public class LinkedList<T> implements List<T> {
   }
 
   public boolean isEmpty() {
-    return size() == 0;
+    return this.size() == 0;
   }
 
   public int size() {
